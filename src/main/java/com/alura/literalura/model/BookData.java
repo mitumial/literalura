@@ -10,7 +10,7 @@ public record BookData(
         @JsonAlias("title") String title,
         @JsonAlias("authors") List<PersonData> authors,
         @JsonAlias("languages") List<String> languages,
-        @JsonAlias("download_count") Integer noDownloads,
+        @JsonAlias("download_count") Integer downloads,
         @JsonAlias("subjects") List<String> tags
         ) {
 }
