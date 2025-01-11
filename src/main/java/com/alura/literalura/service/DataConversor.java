@@ -1,6 +1,7 @@
 package com.alura.literalura.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class DataConversor implements IDataConversor{
@@ -9,7 +10,8 @@ public class DataConversor implements IDataConversor{
     @Override
     public <T> T getBookData(String json, Class<T> tClass) {
         try {
-            return objectMapper.readValue(json, tClass);
+            JsonNode rootNode = objectMapper.readTree(json).get("results").get(0);
+            return objectMapper.treeToValue(rootNode, tClass);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
