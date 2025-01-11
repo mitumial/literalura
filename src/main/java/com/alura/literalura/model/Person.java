@@ -12,4 +12,42 @@ public class Person {
     private String name;
     private Integer birthyear;
     private Integer deathyear;
+
+    public Person(PersonData personData) {
+        this.name = personData.name();
+        this.birthyear = personData.birthyear();
+        this.deathyear = personData.deathyear();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getBirthyear() {
+        return birthyear;
+    }
+
+    public void setBirthyear(Integer birthyear) {
+        this.birthyear = birthyear;
+    }
+
+    public Integer getDeathyear() {
+        return deathyear;
+    }
+
+    public void setDeathyear(Integer deathyear) {
+        this.deathyear = deathyear;
+    }
 }
