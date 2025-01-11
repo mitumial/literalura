@@ -25,13 +25,40 @@ public class LiteraluraApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-//		System.out.println("Are you performing a search? Y/N");
-//		Boolean choice = "y".equalsIgnoreCase(sc.nextLine());
-		var json = client.getBookData(URL_BASE + "dickens");
+		openMenu();
+	}
+
+	public void openMenu(){
+		var opt = -1;
+		while (opt != 0){
+			var menu = """
+					1 - Add new book
+					
+					0 - Close
+					""";
+			System.out.println(menu);
+			opt = sc.nextInt();
+			sc.nextLine();
+
+			switch (opt){
+				case 1:
+					addBook();
+					break;
+				case 0:
+					System.out.println("Goodbye...");
+					break;
+				default:
+					System.out.println("Option invalid");
+			}
+		}
+	}
+
+	private void addBook() {
+		System.out.println("Which book do you wish to add?");
+		String search = sc.nextLine();
+		var json = client.getBookData(URL_BASE + search.toLowerCase().replaceAll(" ", "%20"));
 		BookData data = conversor.getBookData(json, BookData.class);
 		System.out.println(data);
-
-
 	}
 }
 
