@@ -1,8 +1,11 @@
 package com.alura.literalura;
 
+import com.alura.literalura.model.Book;
 import com.alura.literalura.model.BookData;
 import com.alura.literalura.service.BookClient;
+import com.alura.literalura.service.BookService;
 import com.alura.literalura.service.DataConversor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,6 +16,9 @@ import java.util.Scanner;
 
 @SpringBootApplication
 public class LiteraluraApplication implements CommandLineRunner {
+
+	@Autowired
+	private BookService service;
 
 	private final Scanner sc = new Scanner(System.in);
 	private final String URL_BASE = "https://gutendex.com/books/?search=";
@@ -58,7 +64,16 @@ public class LiteraluraApplication implements CommandLineRunner {
 		String search = sc.nextLine();
 		var json = client.getBookData(URL_BASE + search.toLowerCase().replaceAll(" ", "%20"));
 		BookData data = conversor.getBookData(json, BookData.class);
+		System.out.println("Is this your book? (Y/N)");
 		System.out.println(data);
+		boolean flag = "y".equalsIgnoreCase(sc.nextLine());
+		if (flag){
+			service.saveBook(new Book(data));
+			System.out.println("Book successfully stored!");
+		} else {
+			System.out.println("Try again");
+			addBook();
+		}
 	}
 }
 
