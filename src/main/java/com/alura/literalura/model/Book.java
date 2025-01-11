@@ -18,6 +18,9 @@ public class Book {
     private List<String> languages;
     private Integer downloads;
 
+    public Book() {
+    }
+
     public Book(BookData bookData) {
         this.title = bookData.title();
         this.authors = bookData.authors().stream()

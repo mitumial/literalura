@@ -12,6 +12,11 @@ public class Person {
     private String name;
     private Integer birthyear;
     private Integer deathyear;
+    @ManyToOne
+    private Book book;
+
+    public Person() {
+    }
 
     public Person(PersonData personData) {
         this.name = personData.name();
