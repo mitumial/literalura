@@ -13,7 +13,7 @@ public class Book {
     private Long id;
     @Column(unique = true)
     private String title;
-    @OneToMany(mappedBy = "book", cascade = CascadeType.DETACH)
+    @OneToMany(mappedBy = "book", cascade = CascadeType.PERSIST)
     private List<Person> authors;
     private List<String> languages;
     private Integer downloads;

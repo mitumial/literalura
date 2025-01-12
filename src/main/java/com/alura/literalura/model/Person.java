@@ -13,6 +13,7 @@ public class Person {
     private Integer birthyear;
     private Integer deathyear;
     @ManyToOne
+    @JoinColumn(name = "book_id")
     private Book book;
 
     public Person() {
