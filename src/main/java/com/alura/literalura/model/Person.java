@@ -65,10 +65,4 @@ public class Person {
         this.book = book;
     }
 
-    @Override
-    public String toString() {
-        return  "Author: '" + name + "\n" +
-                "Date of birth: " + birthyear + "\n" +
-                "Year of death: " + deathyear;
-    }
 }
