@@ -13,7 +13,8 @@ public class Book {
     private Long id;
     @Column(unique = true)
     private String title;
-    @OneToMany(mappedBy = "book", cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "book_author", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
     private List<Person> authors;
     private List<String> languages;
     private Integer downloads;

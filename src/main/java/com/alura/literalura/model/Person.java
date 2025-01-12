@@ -2,6 +2,9 @@ package com.alura.literalura.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "people")
 public class Person {
@@ -12,9 +15,8 @@ public class Person {
     private String name;
     private Integer birthyear;
     private Integer deathyear;
-    @ManyToOne
-    @JoinColumn(name = "book_id")
-    private Book book;
+    @ManyToMany(mappedBy = "authors")
+    private List<Book> books;
 
     public Person() {
     }
@@ -57,12 +59,16 @@ public class Person {
         this.deathyear = deathyear;
     }
 
-    public Book getBook() {
-        return book;
+    public List<Book> getBook() {
+        return books;
     }
 
     public void setBook(Book book) {
-        this.book = book;
+        if (this.books == null){
+            this.books = new ArrayList<>();
+        }
+        if (!this.books.contains(book)){
+            this.books.add(book);
+        }
     }
-
 }

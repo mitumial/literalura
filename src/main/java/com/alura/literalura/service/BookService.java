@@ -30,7 +30,6 @@ public class BookService {
 
         for (Person author: book.getAuthors()) {
             author.setBook(book);
-            personRepository.save(author);
         }
     }
 }
