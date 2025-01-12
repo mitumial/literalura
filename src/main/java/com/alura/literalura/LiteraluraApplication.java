@@ -39,6 +39,7 @@ public class LiteraluraApplication implements CommandLineRunner {
 		while (opt != 0){
 			var menu = """
 					1 - Add new book
+					2 - Show all books on library
 					
 					0 - Close
 					""";
@@ -49,6 +50,9 @@ public class LiteraluraApplication implements CommandLineRunner {
 			switch (opt){
 				case 1:
 					addBook();
+					break;
+				case 2:
+					showLibrary();
 					break;
 				case 0:
 					System.out.println("Goodbye...");
@@ -70,10 +74,15 @@ public class LiteraluraApplication implements CommandLineRunner {
 		if (flag){
 			service.saveBook(new Book(data));
 			System.out.println("Book successfully stored!");
+			System.out.println(service.getAllBooks());
 		} else {
 			System.out.println("Try again");
 			addBook();
 		}
+	}
+
+	private void showLibrary(){
+		System.out.println(service.getAllBooks());
 	}
 }
 

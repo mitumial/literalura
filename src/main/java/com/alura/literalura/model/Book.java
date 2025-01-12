@@ -69,4 +69,6 @@ public class Book {
     public void setDownloads(Integer downloads) {
         this.downloads = downloads;
     }
+
+
 }

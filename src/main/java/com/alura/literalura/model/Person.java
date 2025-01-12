@@ -56,4 +56,17 @@ public class Person {
     public void setDeathyear(Integer deathyear) {
         this.deathyear = deathyear;
     }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    @Override
+    public String toString() {
+        return "name=" + name;
+    }
 }
