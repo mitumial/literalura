@@ -70,5 +70,12 @@ public class Book {
         this.downloads = downloads;
     }
 
-
+    @Override
+    public String toString() {
+        return "Title: '" + title + "\n" +
+                "Authors: " + authors.stream()
+                .map(a->"\n" +a.getName()) + "\n"+
+                "Languages: " + languages + "\n"+
+                "Downloads: " + downloads;
+    }
 }

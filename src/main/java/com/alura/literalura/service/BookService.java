@@ -19,7 +19,7 @@ public class BookService {
     @Autowired
     private PersonRepository personRepository;
 
-    public List<BookDTO> getAllBooks(){
+    public List<BookDTO> findAllWithAuthors(){
         return repository.findAllWithAuthors().stream()
                 .map(b->new BookDTO(b.getTitle(), b.getAuthors(), b.getLanguages(), b.getDownloads()))
                 .collect(Collectors.toList());

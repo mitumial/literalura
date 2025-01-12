@@ -67,6 +67,8 @@ public class Person {
 
     @Override
     public String toString() {
-        return "name=" + name;
+        return  "Author: '" + name + "\n" +
+                "Date of birth: " + birthyear + "\n" +
+                "Year of death: " + deathyear;
     }
 }
