@@ -59,5 +59,8 @@ public class BookService {
         repository.save(book);
     }
 
+    public Integer countByLanguage(String language){
+        return repository.findBooksByLanguage(language).size();
+    }
 
 }

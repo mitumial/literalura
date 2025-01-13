@@ -47,6 +47,7 @@ public class LiteraluraApplication implements CommandLineRunner {
 					3 - Show all authors on library
 					4 - Find authors alive by year
 					5 - Find books by language
+					6 - Count number of books by language
 					
 					0 - Close
 					""";
@@ -69,6 +70,9 @@ public class LiteraluraApplication implements CommandLineRunner {
 					break;
                 case 5:
                     findBooksByLanguage();
+                    break;
+                case 6:
+                    countBooksByLanguage();
                     break;
 				case 0:
 					System.out.println("Goodbye...");
@@ -129,6 +133,17 @@ public class LiteraluraApplication implements CommandLineRunner {
                 """);
         String lang = sc.nextLine();
         System.out.println(service.findBooksByLanguage(lang));
+    }
+    private void countBooksByLanguage() {
+        System.out.println("What language do you wish to count by?");
+        System.out.println("""
+                en - English
+                es - Spanish
+                de - German
+                it - Italian
+                """);
+        String lang = sc.nextLine();
+        System.out.println(service.countByLanguage(lang) + " book(s) currently on library");
     }
 
 }
