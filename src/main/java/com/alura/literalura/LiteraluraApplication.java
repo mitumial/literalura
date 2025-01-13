@@ -91,6 +91,10 @@ public class LiteraluraApplication implements CommandLineRunner {
 		System.out.println("Is this your book? (Y/N)");
 		System.out.println(data);
 		boolean flag = "y".equalsIgnoreCase(sc.nextLine());
+        if (service.isBookExistent(data.title())){
+            System.out.println("Book already exists!");
+            return;
+        }
 		if (flag){
 			service.saveBook(new Book(data));
 			System.out.println("Book successfully stored!");

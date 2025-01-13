@@ -35,6 +35,11 @@ public class BookService {
                 .collect(Collectors.toList());
     }
 
+    public boolean isBookExistent(String title){
+        Optional<Book> existingBook = repository.findByTitle(title);
+        return existingBook.isPresent();
+    }
+
     @Transactional
     public void saveBook(Book book) {
         List<Person> updatedAuthors = new ArrayList<>();
