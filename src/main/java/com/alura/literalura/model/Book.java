@@ -14,9 +14,12 @@ public class Book {
     private Long id;
     @Column(unique = true)
     private String title;
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "book_author", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
     private List<Person> authors;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "book_languages", joinColumns = @JoinColumn(name = "book_id"))
+    @Column(name = "language")
     private List<String> languages;
     private Integer downloads;
 

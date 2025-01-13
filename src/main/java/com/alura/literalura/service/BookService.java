@@ -6,6 +6,7 @@ import com.alura.literalura.model.Person;
 import com.alura.literalura.repository.BookRepository;
 import com.alura.literalura.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,9 +29,14 @@ public class BookService {
                 .collect(Collectors.toList());
     }
 
+    public List<BookDTO> findBooksByLanguage(String language){
+        return repository.findBooksByLanguage(language).stream()
+                .map(b->new BookDTO(b.getTitle(), b.getAuthors(), b.getLanguages(), b.getDownloads()))
+                .collect(Collectors.toList());
+    }
+
     @Transactional
     public void saveBook(Book book) {
-        // Create a temporary list to avoid modifying the authors list during iteration
         List<Person> updatedAuthors = new ArrayList<>();
 
         for (Person author : book.getAuthors()) {
@@ -47,4 +53,6 @@ public class BookService {
         book.setAuthors(updatedAuthors);
         repository.save(book);
     }
+
+
 }

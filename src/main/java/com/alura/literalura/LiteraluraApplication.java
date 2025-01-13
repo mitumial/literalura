@@ -65,6 +65,9 @@ public class LiteraluraApplication implements CommandLineRunner {
 				case 4:
 					findAuthorsByYear();
 					break;
+                case 5:
+                    findBooksByLanguage();
+                    break;
 				case 0:
 					System.out.println("Goodbye...");
 					break;
@@ -73,7 +76,8 @@ public class LiteraluraApplication implements CommandLineRunner {
 			}
 		}
 	}
-	private void addBook() {
+
+    private void addBook() {
 		System.out.println("Which book do you wish to add?");
 		String search = sc.nextLine();
 		var json = client.getBookData(URL_BASE + search.toLowerCase().replaceAll(" ", "%20"));
@@ -106,5 +110,16 @@ public class LiteraluraApplication implements CommandLineRunner {
 		System.out.println(personService.findByDeathYear(year));
 	}
 
+    private void findBooksByLanguage() {
+        System.out.println("What language do you wish to filter by?");
+        System.out.println("""
+                en - English
+                es - Spanish
+                de - German
+                it - Italian
+                """);
+        String lang = sc.nextLine();
+        System.out.println(service.findBooksByLanguage(lang));
+    }
 
 }
