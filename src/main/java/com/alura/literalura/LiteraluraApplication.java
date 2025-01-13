@@ -61,6 +61,7 @@ public class LiteraluraApplication implements CommandLineRunner {
 					break;
 				case 3:
 					showAuthors();
+                    break;
 				case 4:
 					findAuthorsByYear();
 					break;

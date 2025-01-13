@@ -2,6 +2,7 @@ package com.alura.literalura.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,7 +14,7 @@ public class Book {
     private Long id;
     @Column(unique = true)
     private String title;
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "book_author", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
     private List<Person> authors;
     private List<String> languages;
@@ -53,6 +54,9 @@ public class Book {
 
     public void setAuthors(List<Person> authors) {
         this.authors = authors;
+        for (Person author : this.authors) {
+            author.setBook(this);
+        }
     }
 
     public List<String> getLanguages() {

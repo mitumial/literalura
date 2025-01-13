@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "people")
+@Table(name = "author")
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +15,7 @@ public class Person {
     private String name;
     private Integer birthyear;
     private Integer deathyear;
-    @ManyToMany(mappedBy = "authors")
+    @ManyToMany(mappedBy = "authors",fetch = FetchType.EAGER)
     private List<Book> books;
 
     public Person() {
@@ -69,6 +69,9 @@ public class Person {
         }
         if (!this.books.contains(book)){
             this.books.add(book);
+        }
+        if (!book.getAuthors().contains(this)) {
+            book.getAuthors().add(this); // Ensures bidirectional consistency
         }
     }
 }
