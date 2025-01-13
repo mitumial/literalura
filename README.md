@@ -35,7 +35,7 @@ A basic Java program that obtains Project Gutenberg ebook metadata from a JSON w
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/mitumial/literalura.git
 ```
 
 Go to the project directory
@@ -59,7 +59,4 @@ Run program
 
 ## Tech Stack
 
-**Server:** Java 17, SpringBoot, Maven, Jackson Databind, Gutendex API
-
-**Database:** PostgreSQL
-
+**Server:** Java 17, SpringBoot, Maven, Jackson Databind, Gutendex API, PostgreSQL
