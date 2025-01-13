@@ -11,6 +11,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 @SpringBootApplication
@@ -82,6 +84,10 @@ public class LiteraluraApplication implements CommandLineRunner {
 		String search = sc.nextLine();
 		var json = client.getBookData(URL_BASE + search.toLowerCase().replaceAll(" ", "%20"));
 		BookData data = conversor.getBookData(json, BookData.class);
+        if (data == null) {
+            System.out.println("No book found. Try again.");
+            return;
+        }
 		System.out.println("Is this your book? (Y/N)");
 		System.out.println(data);
 		boolean flag = "y".equalsIgnoreCase(sc.nextLine());
@@ -91,7 +97,6 @@ public class LiteraluraApplication implements CommandLineRunner {
 			System.out.println(service.findAllWithAuthors());
 		} else {
 			System.out.println("Try again");
-			addBook();
 		}
 	}
 

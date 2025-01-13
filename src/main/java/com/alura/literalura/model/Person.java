@@ -71,7 +71,7 @@ public class Person {
             this.books.add(book);
         }
         if (!book.getAuthors().contains(this)) {
-            book.getAuthors().add(this); // Ensures bidirectional consistency
+            book.getAuthors().add(this);
         }
     }
 }
